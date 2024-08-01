@@ -5,13 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Music-service</title>
-    <link href="https://fonts.cdnfonts.com/css/source-sans-pro" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@300;400;600;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
   </head>
 <body>
   <header>
     <div class="container">
-      <div class="header__wrapper">
+      <div class="header-wrapper">
         <div class="header-title">
           <h1 class="main-title">TASTE</h1>
           <h2 class="header-subtitle">ENGAGE<br>IN<br>ART</h2>
@@ -30,7 +30,7 @@
       <div class="home-wrapper container"></div>
     </section>
     <section id="search">
-      <div id="search" class="search container"></div>
+      <div class="search container"></div>
     </section>
     <section id="discover">
       <div class="discover container"></div>
@@ -38,7 +38,14 @@
   </div>
 
   <script id="template-homepage-widget" type="text/x-handlebars-template">
-    <div class="home_content"></div>
+    <div class="home_content">
+      <div class="playlist">
+        <div class="playlist-title">
+          <h2>DISCOVER</h2>
+          <h3>Give it a try!</h3>
+        </div>
+      </div>
+    </div>
   </script>
 
   <script src="js/app.js" type="module"></script>
