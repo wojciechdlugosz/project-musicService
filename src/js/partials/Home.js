@@ -6,7 +6,6 @@ class Home {
 
     thisHome.render(element);
     thisHome.getSongData();
-    thisHome.initGreenPlayer();
   }
 
   getSongData() {
@@ -22,13 +21,13 @@ class Home {
       .then(function (parsedResponse) {
         thisHome.data.songs = parsedResponse;
         thisHome.createPlaylist();
+        thisHome.initGreenPlayer();
         console.log('thisHome.data', JSON.stringify(thisHome.data.songs));
       });
   }
 
   createAudioElement(song) {
     const audioElement = document.createElement('audio');
-    audioElement.controls = true;
     audioElement.src = `songs/${song.filename}`;
 
     return audioElement;
@@ -55,10 +54,10 @@ class Home {
       playlistContainer.insertAdjacentHTML('beforeend', generatedSongHTML);
       console.log(playlistContainer);
 
-      const containerOfAudio = document.querySelector(select.containerOf.song);
+      const containerOfAudio = document.getElementById(song.id);
 
       const audioElement = thisHome.createAudioElement(song);
-      playlistContainer.appendChild(audioElement);
+      containerOfAudio.appendChild(audioElement);
 
     }
   }
@@ -78,7 +77,7 @@ class Home {
   initGreenPlayer(){
     // eslint-disable-next-line no-undef
     GreenAudioPlayer.init({
-      selector: '.play-box .play-song',
+      selector: '.play-song',
       stopOthersOnPlay: true,
     });
   }
