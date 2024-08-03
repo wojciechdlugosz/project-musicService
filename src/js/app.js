@@ -1,4 +1,4 @@
-import {select, classNames,settings} from './settings.js';
+import {select, classNames} from './settings.js';
 import Home from './partials/Home.js';
 
 const app = {
@@ -17,11 +17,10 @@ const app = {
     const thisApp = this;
 
     thisApp.pages = document.querySelector(select.containerOf.pages).children;
-    console.log(thisApp.pages);
+    //console.log(thisApp.pages);
     thisApp.navLinks = document.querySelectorAll(select.nav.links);
 
     const idFromHash = window.location.hash.replace('#/', '');
-
 
     let pageMatchingHash = thisApp.pages[0].id;
 
@@ -72,36 +71,9 @@ const app = {
     }
   },
 
-  initPlaylist: function () {
-    const thisApp = this;
-    console.log('thisApp.data:', thisApp.data);
-
-    for (let songData of thisApp.data.songs) {
-      new Home(thisApp.data.songs[songData]); 
-    }
-  },
-
-  initData: function() {
-    const thisApp = this;
-
-    thisApp.data =  {};
-
-    const url = settings.db.url + '/' + settings.db.songs;
-    fetch(url)
-      .then(function (rawResponse) {
-        return rawResponse.json();
-      })
-      .then(function (parsedResponse) {
-        thisApp.data.songs = parsedResponse;
-        app.initPlaylist(); 
-        console.log('thisApp.data', JSON.stringify(thisApp.data));
-      });
-  },
-
   init: function() {
     const thisApp = this;
 
-    thisApp.initData();
     thisApp.initPages();
     thisApp.initHome();
   },

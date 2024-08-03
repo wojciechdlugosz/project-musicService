@@ -4,7 +4,16 @@
 }
 
 .play-box {
-  padding: 70px;
+  margin-left: 40%;
+  padding: 10px;
+}
+
+.song-details {
+  display: flex;
+
+  p {
+    padding: 20px;
+  }
 }
 
 .subscribe {

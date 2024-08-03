@@ -41,15 +41,12 @@
     <div class="playlist">
       <div class="play-box">
         <div class="song-title no-spacing">
-          <h3>{{title}}</h3>
+          <h3>{{author}} <span> - {{title}}</span></h3>
         </div>
-        <div class="play-song">
-          <audio>
-            <source src="/songs/{{filename}}">
-          </audio>
-        </div>
+        <div class="play-song"></div>
         <div class="song-details no-spacing">
-          <p>{{categories}}</p>
+          <p>Categories: {{categories}}</p>
+          <p>#{{ranking}} in the ranking</p>
         </div>
       </div>
     </div>
@@ -58,6 +55,7 @@
 
   <script id="template-homepage-widget" type="text/x-handlebars-template">
     <div class="home_content">
+      <div class="playlist-wrapper"></div>
       <div class="subscribe">
         <div class="subscribe-title">
           <h2>SUBSCRIBE<b>NOW</b></h2>

@@ -9,6 +9,8 @@ export const select = {
     home:'.home-wrapper',
     pages: '#pages',
     subscribe: '.subscribe',
+    playlist: '.playlist-wrapper',
+    song: '.play-song',
   },
 
   nav: {
@@ -34,7 +36,6 @@ export const templates = {
 export const settings = {
 
   db: {
-    url: '//localhost:3131',
     songs: 'songs',
   }
 };
