@@ -11,17 +11,15 @@
   </head>
 <body>
   <header>
-    <div class="container">
-      <div class="header-wrapper">
-        <div class="header-title">
-          <h1 class="main-title">TASTE</h1>
-          <h2 class="header-subtitle">ENGAGE<br>IN<br>ART</h2>
-        </div>
-        <div class="main-nav">
-          <a href="#home">HOME</a>
-          <a href="#search">SEARCH</a>
-          <a href="#discover">DISCOVER</a>
-        </div>
+    <div class="header-wrapper">
+      <div class="header-title">
+        <h1 class="main-title">TASTE</h1>
+        <h2 class="header-subtitle">ENGAGE<br>IN<br>ART</h2>
+      </div>
+      <div class="main-nav">
+        <a href="#home">HOME</a>
+        <a href="#search">SEARCH</a>
+        <a href="#discover">DISCOVER</a>
       </div>
     </div>
   </header>
@@ -42,44 +40,20 @@
     <div class="home_content">
       <div class="playlist">
         <div class="play-box">
-          <div class="song-title">
-            <h3>JOHN DOE - Where did my love go?</h3>
+          <div class="song-title no-spacing">
+            <h3>{{title}}</h3>
           </div>
           <div class="play-song">
             <audio>
-              <source src="vendor/songs/At_The_Top_David_Renda.mp3">
+              {{filename}}
             </audio>
+          </div>
+          <div class="song-details no-spacing">
+            <p>{{categories}}</p>
           </div>
         </div>
-        <div class="play-box">
-          <div class="song-title">
-            <h3>OMD - Walking On The Milky way</h3>
-          </div>
-          <div class="play-song">
-            <audio>
-              <source src="vendor/songs/At_The_Top_David_Renda.mp3">
-            </audio>
-          </div>
-        </div>
-        <div class="play-box">
-          <div class="song-title">
-            <h3>The Rolling Stones - Angie</h3>
-          </div>
-          <div class="play-song">
-            <audio>
-              <source src="vendor/songs/At_The_Top_David_Renda.mp3">
-            </audio>
-          </div>
-        </div>
-        <div class="play-box">
-          <div class="song-title">
-            <h3>Garbage - The World is Not Enough</h3>
-          </div>
-          <div class="play-song">
-            <audio>
-              <source src="vendor/songs/At_The_Top_David_Renda.mp3">
-            </audio>
-          </div>
+        <div class="song-details">
+          <p>Categories: {{ categories.join ', ' }} + {{ ranking }}</p>
         </div>
       </div>
 
@@ -111,6 +85,7 @@
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.1.0/handlebars.min.js"></script>
   <script src="vendor/green-audio-player.min.js"></script>
+  <script src="/js/script.js"></script>
   <script src="js/app.js" type="module"></script>
 </body>
 </html>

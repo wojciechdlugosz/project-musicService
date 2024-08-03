@@ -1,7 +1,33 @@
-import {select, classNames} from './settings.js';
+import {select, classNames,settings} from './settings.js';
 import Home from './partials/Home.js';
 
 const app = {
+
+  initPlaylist: function () {
+    const thisApp = this;
+    console.log('thisApp.data:', thisApp.data);
+
+    for (let songData of thisApp.data.songs) {
+      new Home(thisApp, songData.id, songData); 
+    }
+  },
+
+  initData: function() {
+    const thisApp = this;
+
+    thisApp.data =  {};
+
+    const url = settings.db.url + '/' + settings.db.songs;
+    fetch(url)
+      .then(function (rawResponse) {
+        return rawResponse.json();
+      })
+      .then(function (parsedResponse) {
+        thisApp.data.songs = parsedResponse;
+        app.initPlaylist(); 
+        console.log('thisApp.data', JSON.stringify(thisApp.data));
+      });
+  },
 
   initPages: function() {
     const thisApp = this;
@@ -72,6 +98,8 @@ const app = {
 
   init: function() {
     const thisApp = this;
+
+    thisApp.initData();
     thisApp.initPages();
     thisApp.initHome();
   },

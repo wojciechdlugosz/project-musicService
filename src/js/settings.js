@@ -7,6 +7,7 @@ export const select = {
   containerOf: {
     home:'.home-wrapper',
     pages: '#pages',
+    subscribe: '.footer',
   },
 
   nav: {
@@ -26,4 +27,12 @@ export const classNames = {
 
 export const templates = {
   pageHome: Handlebars.compile(document.querySelector(select.templateOf.pageHome).innerHTML),
+};
+
+export const settings = {
+
+  db: {
+    url: '//localhost:3131',
+    songs: 'songs',
+  }
 };
