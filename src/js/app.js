@@ -1,9 +1,10 @@
-import {select, classNames} from './settings.js';
+import {select, classNames, settings} from './settings.js';
 import Home from './partials/Home.js';
+import Search from './partials/Search.js';
 
 const app = {
 
-  initHome: function() {
+  /*initHome: function() {
 
     const thisApp = this;
 
@@ -11,7 +12,17 @@ const app = {
     thisApp.homeContainer = document.querySelector(select.containerOf.home);
     thisApp.home = new Home(thisApp.homeContainer);
 
-  },
+  },*/
+
+  /*initSearch: function() {
+
+    const thisApp = this;
+
+    // Get the home container and the corresponding data
+    thisApp.searchContainer = document.querySelector(select.containerOf.search);
+    thisApp.search = new Search(thisApp.searchContainer);
+
+  },*/
 
   initPages: function() {
     const thisApp = this;
@@ -71,11 +82,37 @@ const app = {
     }
   },
 
+  initData: function() {
+    const thisApp = this;
+
+    thisApp.songs = {};
+
+    const url = settings.db.url + '/' + settings.db.songs;
+
+    fetch(url)
+      .then(function (rawResponse) {
+        return rawResponse.json();
+      })
+      .then(function (data) {
+        thisApp.songs = data;
+
+        new Home (thisApp.songs, thisApp.playedSongs);
+        new Search(thisApp.songs, thisApp.playedSongs);
+        
+        //thisApp.discoverInstance = new Discover(thisApp.playedSongs);
+
+        thisApp.initPages();
+
+      });
+  },
+
   init: function() {
     const thisApp = this;
 
-    thisApp.initPages();
-    thisApp.initHome();
+    //thisApp.initPages();
+    //thisApp.initHome();
+    //thisApp.initSearch();
+    thisApp.initData();
   },
 
 };

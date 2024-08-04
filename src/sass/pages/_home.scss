@@ -4,8 +4,11 @@
 }
 
 .play-box {
-  margin-left: 35%;
-  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
 }
 
 .song-details {
@@ -54,13 +57,13 @@
   padding-left: 20%;
 }
 
-.btn-join {
+.btn-home {
   position: relative;
   margin-top: 280px;
   margin-right: 50px;
 }
 
-.btn-join button{
+.btn-home button {
   position: absolute;
   top: 50%;
   right: 50%;
