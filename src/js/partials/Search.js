@@ -6,7 +6,6 @@ class Search {
 
     thisSearch.allSongs = allSongs;
     thisSearch.playedSongs = playedSongs || [];
-    console.log(thisSearch.playedSongs);
 
     thisSearch.playedCategories = [];
 
@@ -14,7 +13,6 @@ class Search {
 
     thisSearch.render();
     thisSearch.getCategory(thisSearch.allSongs);
-    thisSearch.filteringSongs(thisSearch.allSongs);
   
   }
 
@@ -30,26 +28,7 @@ class Search {
         }
       }
     }
-  
-    thisSearch.createCategoriesList(thisSearch.categoryList);
   }
-
-  createCategoriesList(categories) {
-    const selectElement = document.getElementById('select_category');
-    selectElement.innerHTML = ''; // Clear existing options
-
-    const defaultOption = document.createElement('option');
-    defaultOption.value = 'clean';
-    selectElement.appendChild(defaultOption);
-    
-    for (const category of categories) {
-      const optionElement = document.createElement('option');
-      optionElement.value = category;
-      optionElement.textContent = category;
-      selectElement.appendChild(optionElement);
-    }
-  }
-
 
   createAudioElement(song) {
     const audioElement = document.createElement('audio');
@@ -60,109 +39,55 @@ class Search {
 
   }
 
-  filteringSongs(allSongs) {
+  createPlaylist(){
     const thisSearch = this;
-    const button = document.querySelector('.btn');
-    const input = document.querySelector(select.containerOf.input);
-    const selectCategories = document.getElementById('select_category');
-    let selectedCategory = '';
-  
-    selectCategories.addEventListener('input', function (event) {
-      event.preventDefault();
-      selectedCategory = event.target.value;
-    });
-  
-    button.addEventListener('click', function(event) {
-      event.preventDefault(); 
-      const inputString = input.value.toLowerCase().trim();
-  
-      const playlistContainer = document.querySelector(select.containerOf.searchPlaylist);
+    const categoryList = [];
 
-      playlistContainer.innerHTML = '';
-  
-      for (const song of allSongs) {
-        const filenameParts = song.filename.replace('.mp3', '').replace(/-/g, '').split('_');
-        const reversedParts = filenameParts.reverse();
-        const fullName = `${reversedParts[1]} ${reversedParts[0]}`;
-        const uppercaseFullName = fullName.toUpperCase();
-  
-        const searchedSong = 'searched-song' + '-' + song.id;
-  
-        const songHTMLData = {
-          id: searchedSong,
-          title: song.title,
-          author: uppercaseFullName,
-          filename: `${song.filename}`,
-          categories: song.categories,
-          ranking: song.ranking,
-        };
-  
-        const titleMatch = song.title.toLowerCase().includes(inputString);
-        const authorMatch = fullName.toLowerCase().includes(inputString);
-        const categoryMatch = (
-          (selectedCategory === '' || selectedCategory.includes('clean')) ||
-          (song.categories.includes(selectedCategory) &&
-           ((titleMatch && authorMatch) || (titleMatch || authorMatch)))
-        );
-        if ((titleMatch || authorMatch) && categoryMatch) {
-          const songHTML = templates.singleSong(songHTMLData);
-          playlistContainer.innerHTML += songHTML; 
-          
-          const songContainer = document.getElementById(searchedSong);
-  
-          songContainer.classList.remove('play-song');
-          songContainer.classList.add('searched-song');
-  
-          const audioElement = thisSearch.createAudioElement(song);
-          songContainer.appendChild(audioElement);
+    // for every category (song)...
+    for (const song of thisSearch.songs) {
+      // Create a new object representing the song with selected properties
+      const songsObject = {
+        id: song.id,
+        title: song.title,
+        author: song.author,
+        filename:`songs/${song.filename}`,
+        categories: song.categories,
+        ranking: song.ranking,
+      };
+      const generatedSongHTML = templates.singleSong(songsObject); 
+      const playlistContainer = document.querySelector(select.containerOf.searchPlaylist);
+      playlistContainer.insertAdjacentHTML('beforeend', generatedSongHTML);
+      //console.log(playlistContainer);
+      const containerOfAudio = document.getElementById(song.id);
+      
+      const audioElement = thisSearch.createAudioElement(song);
+      containerOfAudio.appendChild(audioElement);
+
+      for (const category of song.categories) {
+        if (!categoryList.includes(category)) {
+          categoryList.push(category);
         }
       }
-      thisSearch.initGreenPlayer();
-      thisSearch.playSongs(thisSearch.allSongs);
-    });
+    }
+
+    thisSearch.createCategoriesList(categoryList);
   }
 
-  playSongs(allSongs){
+  createCategoriesList(categories) {
+    const selectElement = document.getElementById('search_select');
+    selectElement.innerHTML = ''; // Clear existing options
 
-    const thisSearch = this;
-    const audioPlayers = document.querySelectorAll('.playlist');
+    const defaultOption = document.createElement('option');
+    defaultOption.value = 'clean';
+    selectElement.appendChild(defaultOption);
 
-    for(let audioElement of audioPlayers){
-      const audio = audioElement.querySelector('audio');
-
-      audio.addEventListener('play', function(event){
-        event.preventDefault(); 
-        console.log(audio);
-        const categoriesParagraph = audioElement.querySelector('.song-details p#song-categories');
-        const categoriesText = categoriesParagraph.textContent.replace('Categories:', '').trim();
-
-        if (categoriesText !== '') {
-          const categoriesArray = categoriesText.split(',').map(category => category.trim());
-          console.log(categoriesArray);
-          for (let category of categoriesArray) {
-            if (!thisSearch.playedCategories[category]) {
-              thisSearch.playedCategories[category] = 1;
-            } else {
-              thisSearch.playedCategories[category]++;
-            }
-          }
-          const favoriteCategoriesList = Object.entries(thisSearch.playedCategories).sort((a,b) => b[1]-a[1]).map(el=>el[0]); 
-          thisSearch.mostPopularCategory = favoriteCategoriesList[0];
-
-          console.log(thisSearch.mostPopularCategory);
-          console.log('Played Categories:', thisSearch.playedCategories);
-
-          for (const song of allSongs) {
-            if (song.categories.includes(thisSearch.mostPopularCategory)) {
-              thisSearch.playedSongs.push(song);
-              console.log('listenedsongs', thisSearch.playedSongs);
-            }
-          }
-        }
-      });
-    } 
+    for (const category of categories) {
+      const optionElement = document.createElement('option');
+      optionElement.value = category;
+      optionElement.textContent = category;
+      selectElement.appendChild(optionElement);
+    }
   }
-
 
   render() {
 

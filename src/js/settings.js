@@ -4,6 +4,7 @@ export const select = {
     pageHome: '#template-homepage-widget',
     singleSong: '#template-singlesong-widget',
     searchPage:'#template-search-page',
+    categories: '#search_select',
   },
 
   containerOf: {
@@ -42,6 +43,7 @@ export const templates = {
 export const settings = {
 
   db: {
+    url: '//' + window.location.hostname + (window.location.hostname=='localhost' ? ':3131' : ''),
     songs: 'songs',
   }
 };

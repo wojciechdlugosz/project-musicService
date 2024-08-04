@@ -4,26 +4,6 @@ import Search from './partials/Search.js';
 
 const app = {
 
-  /*initHome: function() {
-
-    const thisApp = this;
-
-    // Get the home container and the corresponding data
-    thisApp.homeContainer = document.querySelector(select.containerOf.home);
-    thisApp.home = new Home(thisApp.homeContainer);
-
-  },*/
-
-  /*initSearch: function() {
-
-    const thisApp = this;
-
-    // Get the home container and the corresponding data
-    thisApp.searchContainer = document.querySelector(select.containerOf.search);
-    thisApp.search = new Search(thisApp.searchContainer);
-
-  },*/
-
   initPages: function() {
     const thisApp = this;
 
@@ -96,10 +76,8 @@ const app = {
       .then(function (data) {
         thisApp.songs = data;
 
-        new Home (thisApp.songs, thisApp.playedSongs);
-        new Search(thisApp.songs, thisApp.playedSongs);
-        
-        //thisApp.discoverInstance = new Discover(thisApp.playedSongs);
+        new Home (thisApp.songs);
+        new Search(thisApp.songs);
 
         thisApp.initPages();
 

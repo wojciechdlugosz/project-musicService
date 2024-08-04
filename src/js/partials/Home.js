@@ -17,7 +17,6 @@ class Home {
     thisHome.generatePlaylist(thisHome.allSongs);
 
     thisHome.renderCategories(thisHome.allSongs);
-    thisHome.filterByCategory();
   
   }
 
@@ -66,9 +65,6 @@ class Home {
   renderCategories(allSongs) {
     const thisHome = this;
 
-    const listOfCategories = document.querySelector('.all-categories');
-    listOfCategories.innerHTML = ''; // Clear existing options
-
     for (const song of allSongs) {
       const categoriesOfSong = song.categories;
 
@@ -78,58 +74,6 @@ class Home {
         }
       }
     }
-
-    const linkHTMLData = { categories: thisHome.categoryList };
-    const linkHTML = templates.categoriesLink(linkHTMLData);
-    listOfCategories.innerHTML = linkHTML;
-  }
-
-  filterByCategory() {
-    const thisHome = this;
-    //const audioPlayers = document.querySelectorAll('.playlist');
-    //console.log(audioPlayers);
-    const links = document.querySelector('.list_of_categories');
-
-    links.addEventListener('click', function(event) {
-      event.preventDefault();
-    
-      const categoryItem = event.target;
-      const clickedCategory = categoryItem.textContent.replace(',', '');
-    
-      // Remove 'active' class from previously clicked category
-      const activeCategoryItem = links.querySelector('.active');
-      if (activeCategoryItem) {
-        activeCategoryItem.classList.remove('active');
-      }
-    
-      // Toggle 'active' class on the clicked category item
-      categoryItem.classList.toggle('active');
-    
-      if (thisHome.selectedCategory === clickedCategory) {
-        // Reset to initial state if the same category is clicked again
-        thisHome.selectedCategory = null;
-        categoryItem.classList.remove('active');
-      } else {
-        thisHome.selectedCategory = clickedCategory;
-      }
-    
-      // Show/hide songs based on the clicked category
-      const allSongs = document.querySelectorAll('.playlist');
-      allSongs.forEach(song => {
-        const categoriesParagraph = song.querySelector('.song-details p#song-categories');
-        const categoriesText = categoriesParagraph.textContent.replace('Categories:', '').trim();
-
-        if (thisHome.selectedCategory) {
-          if (categoriesText.includes(thisHome.selectedCategory)) {
-            song.style.display = 'block'; // Show matched songs
-          } else {
-            song.style.display = 'none'; // Hide unmatched songs
-          }
-        } else {
-          song.style.display = 'block'; // Show all songs when no category is selected
-        }
-      });
-    });
   }
 
   playSongs(allSongs){
