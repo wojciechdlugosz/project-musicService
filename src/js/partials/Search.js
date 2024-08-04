@@ -1,4 +1,4 @@
-import {select,templates} from '../settings.js';
+import {select, templates} from '../settings.js';
 class Search {
 
   constructor(allSongs, playedSongs){
@@ -87,6 +87,17 @@ class Search {
       optionElement.textContent = category;
       selectElement.appendChild(optionElement);
     }
+  }
+
+  filterSongs(){
+    //const thisSearch = this;
+    const button = document.querySelector(select.containerOf.buttonSearch);
+
+    button.addEventListener('submit', function(event){
+      event.preventDefault(); // Prevent form submission
+
+    });
+
   }
 
   render() {
