@@ -9,110 +9,142 @@
     <link rel="stylesheet" href="vendor/green-audio-player.min.css">
     <link rel="stylesheet" href="css/style.css">
   </head>
-<body>
-  <header>
-    <div class="header-wrapper">
-      <div class="header-title">
-        <h1 class="main-title">TASTE</h1>
-        <h2 class="header-subtitle">ENGAGE<br>IN<br>ART</h2>
-      </div>
-      <div class="main-nav">
-        <a href="#home">HOME</a>
-        <a href="#search">SEARCH</a>
-        <a href="#discover">DISCOVER</a>
-      </div>
+  <body>
+    <header>
+      <div class="header-wrapper">
+        <div class="header-title">
+          <h1 class="main-title" id="upc">taste</h1>
+          <h2 class="header-subtitle">ENGAGE<br>IN<br>ART</h2>
+        </div>
+     </div>
+     <div class="main-nav">
+      <a href="#home" id="upc-home">home</a>
+      <a href="#search" id="upc-search">search</a>
+      <a href="#discover" id="upc-discover">discover</a>
     </div>
-  </header>
+   </header>
 
-  <div id="pages">
-    <section id="home">
-      <div class="home-wrapper container"></div>
-    </section>
-    <section id="search">
-      <div class="search-wrapper container"></div>
-    </section>
-    <section id="discover">
-      <div class="discover-wrapper container"></div>
-    </section>
-  </div>
 
-  <script id="template-singlesong-widget" type="text/x-handlebars-template">
-
-    <div class="playlist">
-      <div class="play-box">
-        <div class="song-title no-spacing">
-          <h3>{{author}} <span> - {{title}}</span></h3>
+    <div id="pages">
+      <section id="home">
+        <div class="home-container"></div>
+      </section>
+      <section id="search">
+        <div class="search-container">
         </div>
-        <div class="play-song" id="{{id}}"></div>
-        <div class="song-details no-spacing">
-          <p>Categories: {{categories}}</p>
-          <p>#{{ranking}} in the ranking</p>
+      </section>
+      <section id="discover">
+        <div class="discover-container">
         </div>
-      </div>
+      </section>
+      <section id="join">
+        <div class="join-container">
+        </div>
+      </section>
     </div>
 
-  </script>
+    <script id="template-singlesong-widget" type="text/x-handlebars-template">
 
-  <script id="template-homepage-widget" type="text/x-handlebars-template">
-    <div class="home_content">
-      <div class="playlist-wrapper"></div>
-      <div class="subscribe">
-        <div class="subscribe-title">
-          <h2>SUBSCRIBE<b>NOW</b></h2>
-        </div>
-        <div class="subscribe-content">
-          <div class="btn-home">
-            <button>join now</button>
+      <div class="playlist">
+        <div class="play-box">
+          <div class="song-title no-spacing">
+            <h3>{{author}} <span> - {{title}}</span></h3>
           </div>
-          <div class="subscribe-box">
-            <div class="singer">
-              <h1>Dean</h1>
-              <h1 class="surname">Hen<span>son</span></h1>
-            </div>
-            <div class="subscribe-img">
-              <img src="/images/artist.jpg">
-            </div>
+          <div class="play-song" id="{{id}}" href="#song">
+          </div>
+          <div class="song-details no-spacing">
+            <p id="song-categories">Categories: {{categories}}</p>
+            <p>#{{ranking}} in the ranking</p>
           </div>
         </div>
-        <div class="details">
-          <h2>NEW ALBUM</h2>
-          <h3>Available only for subscribers</h3>
+      </div>
+
+   </script>
+
+   <script id="template-categories-link" type="text/x-handlebars-template">
+      <h2>Categories:</h2>
+      <ul class="list_of_categories">
+        {{#each categories}}
+          <li><a href="#category"><span>{{this}}</span></a></li>
+        {{/each}}
+      </ul>
+   </script>
+
+    <script id="template-homepage-widget" type="text/x-handlebars-template">
+      <div class="home_content">
+        <div class="all-categories">
+        </div>
+        <div class="playlist-wrapper">
+        </div>
+        <div class="subscribe">
+          <div class="subscribe-title">
+            <h2>SUBSCRIBE<b>NOW</b></h2>
+          </div>
+          <div class="subscribe-content">
+            <a href="#join" class="button" ><button class="btn-join"id="upc">Join now</button></a>
+            <div class="subscribe-box">
+              <div class="singer">
+                <h1>Dean</h1>
+                <h1 class="surname">Hen<span>son</span></h1>
+              </div>
+              <div class="subscribe-img">
+                <img src="/images/artist.jpg">
+              </div>
+            </div>
+          </div>
+          <div class="details">
+            <h2 id="upc">new album</h2>
+            <h3>Available only for subscribers</h3>
+          </div>
         </div>
       </div>
-    </div>
-    <span class="footer-content">All rights reserved</span>
-  </script>
+      <div class="home-footer"><h3>All rights reserved</h3></div>
+    </script>
 
-  <script id="template-search-page" type="text/x-handlebars-template">
-    <section class="section-search" id="songs-search">
-      <h2 class="section-title">SEARCH</h2>
-      <form>
-        <div class="search-data">
-          <h3>Name</h3>
-          <input type="text"id="entered_data">
-          <h3>Category</h3>
-          <select name="category" id="select_category">
-            <option value="clean"></option>
-          </select>
+    <script id="template-search-page" type="text/x-handlebars-template">
+      <section class="section-search" id="songs-search">
+        <h2 class="section-title" id="upc">search</h2>
+        <form>
+          <div class="search-data">
+            <h3>Name</h3>
+            <input type="text"id="entered_data">
+            <h3>Category</h3>
+            <select name="category" id="select_category">
+              <option value="clean"></option>
+            </select>
+          </div>
+          <div class="btn">
+            <button id="search" type="submit">search</button>
+          </div>
+        </form>
+        <div class="search-playlist-wrapper">
         </div>
-        <div class="btn">
-          <button id="search" type="submit">search</button>
-        </div>
-      </form>
-      <div class="search-playlist-wrapper"></div>
-    </section>
-  </script>
+        <div class="footer">All rights reserved</div>
+      </section>
+    </script>
 
-  <script id="template-discover-page" type="text/x-handlebars-template">
-    <div class="titles">
-      <h2 class="section-title">DISCOVER</h2>
-      <h3 section="section-subtitle">Give it a try!</h3>
-    </div>
-    <div class="discover-playlist-wrapper"></div>
-  </script>
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.1.0/handlebars.min.js"></script>
-  <script src="vendor/green-audio-player.min.js"></script>
-  <script src="js/app.js" type="module"></script>
-</body>
+    <script id="template-discover-page" type="text/x-handlebars-template">
+      <div class="titles">
+        <h2 class="section-title" id="upc">discover</h2>
+        <h3 section="section-subtitle">Give it a try!</h3>
+      </div>
+      <div class="discover-playlist-wrapper">
+      </div>
+      <div class="no-songs-message"></div>
+      <div class="footer">All rights reserved</div>
+    </script>
+
+    <script id="template-join-page" type="text/x-handlebars-template">
+      <div class="titles">
+        <h2 class="section-title" id="upc">join now</h2>
+      </div>
+      <div class="footer">All rights reserved</div>
+    </script>
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.1.0/handlebars.min.js"></script>
+    <script src="vendor/green-audio-player.min.js"></script>
+    <script src="js/app.js" type="module"></script>
+  </body>
 </html>
