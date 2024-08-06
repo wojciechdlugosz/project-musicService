@@ -1,27 +1,31 @@
 export const select = {
-
+  
   templateOf: {
     pageHome: '#template-homepage-widget',
     singleSong: '#template-singlesong-widget',
     searchPage:'#template-search-page',
     discoverPage:'#template-discover-page',
+    joinPage:'#template-join-page',
     categories: '#search_select',
+    categoriesLink: '#template-categories-link',
   },
 
   containerOf: {
-    home:'.home-wrapper',
-    search:'.search-wrapper',
-    discover:'.discover-wrapper',
-    pages: '#pages',
+    home:'.home-container',
+    search:'.search-container',
+    discover:'.discover-container',
+    join:'.join-container',
     subscribe: '.subscribe',
     playlist: '.playlist-wrapper',
-    song: '.play-song',
-    buttonSearch: '.btn',
     searchPlaylist: '.search-playlist-wrapper',
     discoverPlaylist: '.discover-playlist-wrapper',
-    songOfDiscoverPlaylist: 'discover-playlist-wrapper .play-song',
+    song: '.play-song',
+    search_song: '.search-song',
+    random_song: '.random-song',
+    buttonSearch: '.btn',
     input: 'input',
     selectcategory: '#select_category',
+    pages: '#pages',
   },
 
   nav: {
@@ -44,6 +48,8 @@ export const templates = {
   singleSong: Handlebars.compile(document.querySelector(select.templateOf.singleSong).innerHTML),
   searchPage: Handlebars.compile(document.querySelector(select.templateOf.searchPage).innerHTML),
   discoverPage: Handlebars.compile(document.querySelector(select.templateOf.discoverPage).innerHTML),
+  joinPage: Handlebars.compile(document.querySelector(select.templateOf.joinPage).innerHTML),
+  categoriesLink: Handlebars.compile(document.querySelector(select.templateOf.categoriesLink).innerHTML),
 };
 
 export const settings = {
