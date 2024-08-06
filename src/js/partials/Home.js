@@ -1,4 +1,5 @@
-import {templates,select} from '../settings.js';
+import {templates, select} from '../settings.js';
+import Playlist from './Playlist.js';
 
 class Home {
   constructor(allSongs, playedSongs)  {
@@ -11,12 +12,12 @@ class Home {
     thisHome.categoryList = [];
     //console.log(thisHome.categoryList);
 
-  
-
     thisHome.render();
     thisHome.generatePlaylist(thisHome.allSongs);
 
     thisHome.renderCategories(thisHome.allSongs);
+
+    thisHome.playlistInstance = new Playlist(thisHome.songs);
   
   }
 

@@ -1,6 +1,7 @@
 import {select, classNames, settings} from './settings.js';
 import Home from './partials/Home.js';
 import Search from './partials/Search.js';
+import Discover from './partials/Discover.js';
 
 const app = {
 
@@ -78,6 +79,7 @@ const app = {
 
         new Home (thisApp.songs);
         new Search(thisApp.songs);
+        new Discover(thisApp.songs);
 
         thisApp.initPages();
 
