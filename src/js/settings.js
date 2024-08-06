@@ -21,6 +21,7 @@ export const select = {
     discoverPlaylist: '.discover-playlist-wrapper',
     songOfDiscoverPlaylist: 'discover-playlist-wrapper .play-song',
     input: 'input',
+    selectcategory: '#select_category',
   },
 
   nav: {
