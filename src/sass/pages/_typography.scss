@@ -1,13 +1,13 @@
 h1 {
   font-family: $font-family;
   font-weight: $font-black;
-  font-size: 150px;
+  font-size: 130px;
   color: $color-light;
   letter-spacing: 130px;
   padding: 0;
   margin: 0;
 }
-  
+
 h2 {
   font-family: $font-family;
   font-weight: $font-bold;
@@ -21,5 +21,4 @@ h3 {
   font-weight: $font-semibold;
   font-size: 20px;
   color: $color-light;
-  letter-spacing: 15px;
 }
